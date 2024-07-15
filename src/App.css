@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.list {
+  border: 1px solid #D4D4D4; 
+  border-radius: 20px;
+  .title:focus,
+  .title:hover {
+    outline: none;
+  background-color: beige;
+}
+}
