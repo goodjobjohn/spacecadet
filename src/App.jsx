@@ -8,8 +8,8 @@ function App() {
         .inbox,
         .lists,
         .schedule {
-            // border: 1px solid black;
-            // border-radius: 20px;
+            border: 1px solid black;
+            border-radius: 20px;
         }
         .app {
             box-sizing: border;
@@ -18,6 +18,8 @@ function App() {
             height: 95vh;
             border-radius: 20px;
             display: grid;
+            gap: 10px;
+            padding: 10px;
             grid-template-areas:
                 "inbox lists lists lists lists"
                 "schedule schedule schedule schedule schedule";
