@@ -1,46 +1,50 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { GridStack } from "gridstack";
-import "gridstack/dist/gridstack.css";
-
-import "./App.css";
+const css = String.raw;
 
 function App() {
-    // _________________________________________________
-    // Initialize Gridstack inside useEffect so that DOM is rendered when its initialized
-    // _________________________________________________
-    useEffect(() => {
-        var grid = GridStack.init();
-    });
-    // _________________________________________________
-    // _________________________________________________
+    const allStyles = css`
+        .app,
+        .inbox,
+        .lists,
+        .schedule {
+            // border: 1px solid black;
+            // border-radius: 20px;
+        }
+        .app {
+            box-sizing: border;
+            border: 1px solid black;
+            margin: 2.5vh;
+            height: 95vh;
+            border-radius: 20px;
+            display: grid;
+            grid-template-areas:
+                "inbox lists lists lists lists"
+                "schedule schedule schedule schedule schedule";
+        }
+        .inbox {
+            grid-area: inbox;
+            height: 100%;
+            min-width: 250px;
+            max-width: 250px;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        .lists {
+            grid-area: lists;
+            border-bottom: 1px solid black;
+        }
+        .schedule {
+            grid-area: schedule;
+        }
+    `;
 
     return (
-        <div className="App">
-            <div className="grid-stack">
-                <div
-                    className="grid-stack-item border-dark"
-                    data-gs-width="4"
-                    data-gs-height="4"
-                >
-                    <div className="grid-stack-item-content">Item 1</div>
-                    <div className="grid-stack-item-content">Item 1</div>
-                </div>
-                <div
-                    className="grid-stack-item border-dark"
-                    data-gs-width="4"
-                    data-gs-height="4"
-                >
-                    <div className="grid-stack-item-content">Item 2</div>
-                </div>
-                <div
-                    className="grid-stack-item border-dark"
-                    data-gs-width="4"
-                    data-gs-height="4"
-                >
-                    <div className="grid-stack-item-content">Item 3</div>
-                </div>
-            </div>
+        <div className="app">
+            <style>{allStyles}</style>
+            <div className="inbox"></div>
+            <div className="lists"></div>
+            <div className="schedule"></div>
         </div>
     );
 }
