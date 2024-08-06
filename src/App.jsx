@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { draggingScroll } from "./utilities.js";
+import "./App.css";
 
 const css = String.raw;
 
@@ -22,14 +24,14 @@ function App() {
             gap: 10px;
             padding: 10px;
             grid-template-areas:
-                "inbox lists lists lists lists"
-                "schedule schedule schedule schedule schedule";
+                "lists"
+                "schedule";
         }
         .inbox {
             grid-area: inbox;
             height: 100%;
-            min-width: 250px;
             max-width: 250px;
+            min-width: 250px;
             border-right: 1px solid black;
             border-bottom: 1px solid black;
             word-break: break-word;
@@ -40,6 +42,8 @@ function App() {
             border-bottom: 1px solid black;
             padding: 10px;
             overflow-x: scroll;
+            gap: 10px;
+            width: 100%;
         }
         .list {
             min-width: 250px;
@@ -56,14 +60,26 @@ function App() {
         setListCount(listCount + 1);
     };
 
+    useEffect(() => {
+        // This function will run after the component mounts
+        draggingScroll();
+
+        // If your script needs cleanup, you can return a cleanup function
+        return () => {
+            // Perform any cleanup here if necessary
+            console.log("Cleaning up script effects");
+        };
+    }, []); // Empty dependency array means this effect runs once on mount
+
     return (
         <div className="app">
             <style>{allStyles}</style>
-            <div className="inbox">
-                ajksdhajsihdas hdkljash dkja hskdj haskjdh aksjhdkaj
-                shdakjshdkajshdkajshdkajshdkajshdkjashdkajshdka
-            </div>
-            <div className="lists">
+
+            <div className="lists scrollable" id="scrollable-container">
+                <div className="inbox">
+                    ajksdhajsihdas hdkljash dkja hskdj haskjdh aksjhdkaj
+                    shdakjshdkajshdkajshdkajshdkajshdkjashdkajshdka
+                </div>
                 {Array.from({ length: listCount }, (_, index) => (
                     <List key={index} />
                 ))}
@@ -79,7 +95,7 @@ export default App;
 function List() {
     return (
         <div className="list">
-            <div class="item" contenteditable="true">
+            <div className="item" contentEditable="true">
                 dsdsdsd
             </div>
             <button>Add</button>
