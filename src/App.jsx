@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { draggingScroll } from "./utilities.js";
+import { dragToScroll } from "./utilities.js";
 import "./App.css";
 
 const css = String.raw;
@@ -15,7 +15,6 @@ function App() {
             border-radius: 20px;
         }
         .app {
-            box-sizing: border;
             border: 1px solid black;
             margin: 2.5vh;
             height: 95vh;
@@ -62,7 +61,7 @@ function App() {
 
     useEffect(() => {
         // This function will run after the component mounts
-        draggingScroll();
+        dragToScroll();
 
         // If your script needs cleanup, you can return a cleanup function
         return () => {
